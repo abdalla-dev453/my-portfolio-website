@@ -12,21 +12,21 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    name: 'Alex Johnson',
+    name: 'Ahmad Naim',
     role: 'Engineering Manager',
     company: 'Tech Corp',
     text: 'Msema consistently demonstrates strong problem-solving skills and delivers high-quality software solutions. A reliable engineer who elevates every team.',
     image: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=200',
   },
   {
-    name: 'Sarah Chen',
+    name: 'Fatima Masito',
     role: 'Product Lead',
     company: 'InnovateLab',
     text: 'A highly motivated engineer who quickly learns new technologies and contributes effectively to team projects. Great attention to detail and product thinking.',
     image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200',
   },
   {
-    name: 'David Okafor',
+    name: 'Collins Kiprotich',
     role: 'Senior Developer',
     company: 'DevStudio',
     text: 'Excellent attention to detail and commitment to building impactful products. Msema brings both technical skill and genuine enthusiasm to every project.',
