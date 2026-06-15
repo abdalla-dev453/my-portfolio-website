@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-primary-bg text-text-primary font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-primary-accent/30 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-primary-bg;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-card rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-secondary-accent;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-card/50 backdrop-blur-lg border border-white/5;
+  }
+
+  .glass-strong {
+    @apply bg-card/80 backdrop-blur-xl border border-white/10;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-accent to-secondary-accent bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(#1A2234, #1A2234) padding-box,
+      linear-gradient(135deg, #3B82F6, #06B6D4) border-box;
+    border: 2px solid transparent;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-primary-accent hover:bg-primary-accent/90 text-white font-medium rounded-xl
+      transition-all duration-300 hover:shadow-lg hover:shadow-primary-accent/25 hover:-translate-y-0.5
+      active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 border border-primary-accent/50 text-primary-accent hover:bg-primary-accent/10
+      font-medium rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-accent/5;
+  }
+
+  .glow {
+    box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.3);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
