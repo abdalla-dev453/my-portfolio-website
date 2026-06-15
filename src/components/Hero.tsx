@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Download, ArrowDown, MapPin } from 'lucide-react';
+import profileImage from '../assets/msema.jpeg';
 
 export default function Hero() {
   return (
@@ -105,7 +106,7 @@ export default function Hero() {
               <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full gradient-border p-1">
                 <div className="w-full h-full rounded-full overflow-hidden bg-secondary-bg">
                   <img
-                    src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    src={profileImage}
                     alt="Msema Abdalla"
                     className="w-full h-full object-cover"
                     loading="eager"

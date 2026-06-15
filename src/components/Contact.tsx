@@ -4,11 +4,11 @@ import { Mail, Phone, Linkedin, Github, Twitter, Send } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 
 const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'msema@example.com', href: 'mailto:msema@example.com' },
-  { icon: Phone, label: 'Phone', value: '+254 7XX XXX XXX', href: 'tel:+254700000000' },
-  { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/msema', href: '#' },
-  { icon: Github, label: 'GitHub', value: 'github.com/msema', href: '#' },
-  { icon: Twitter, label: 'X (Twitter)', value: '@msema_dev', href: '#' },
+  { icon: Mail, label: 'Email', value: 'abdallamsema69@gmail.com', href: 'abdallamsema69@gmail.com' },
+  { icon: Phone, label: 'Phone', value: '+254 112 898 506', href: 'tel:+254112898506' },
+  { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/msema', href: 'https://www.linkedin.com/in/msema-abdalla' },
+  { icon: Github, label: 'GitHub', value: 'github.com/msema', href: 'https://github.com/abdalla-dev453' },
+  { icon: Twitter, label: 'X (Twitter)', value: '@msema_dev', href: 'https://twitter.com/msema_dev' },
 ];
 
 export default function Contact() {

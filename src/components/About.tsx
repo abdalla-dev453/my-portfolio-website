@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Code2, Shield, Lightbulb, GraduationCap } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
+import Image from '../assets/dev.jpeg';
 
 const highlights = [
   { icon: Code2, label: 'Full-Stack Developer' },
@@ -42,7 +43,7 @@ export default function About() {
         >
           <div className="relative rounded-2xl overflow-hidden gradient-border p-1">
             <img
-              src="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=600"
+              src={Image}
               alt="Working on code"
               className="w-full h-80 lg:h-96 object-cover rounded-2xl"
               loading="lazy"
