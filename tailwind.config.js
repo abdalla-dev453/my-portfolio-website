@@ -4,40 +4,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          bg: '#0B0F19',
-          accent: '#3B82F6',
-        },
-        secondary: {
-          bg: '#111827',
-          accent: '#06B6D4',
-        },
-        card: '#1A2234',
-        success: '#22C55E',
-        text: {
-          primary: '#FFFFFF',
-          secondary: '#CBD5E1',
-        },
+        ink: '#F1E7D6',
+        paper: '#2D2118',
+        muted: '#6E5B49',
+        line: '#D7C3A8',
+        accent: '#9B3D2C',
+        primary: { bg: '#F1E7D6', accent: '#9B3D2C' },
+        secondary: { bg: '#E4D2B9', accent: '#7E2E20' },
+        card: '#F8F0E4',
+        success: '#477052',
+        text: { primary: '#2D2118', secondary: '#6E5B49' },
+        stone: { 300: '#3D2E22', 400: '#6E5B49', 500: '#8E7862', 600: '#B7A38E' },
+        red: { 400: '#B9433B' },
+        amber: { 400: '#9B6A2F' },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-      },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'float-delayed': 'float 6s ease-in-out 3s infinite',
-        'pulse-slow': 'pulse 4s ease-in-out infinite',
-        'gradient': 'gradient 8s ease infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
-        gradient: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
+        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        display: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
       },
     },
   },
