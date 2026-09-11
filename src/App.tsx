@@ -12,6 +12,7 @@ import WhyWorkWithMe from './components/WhyWorkWithMe';
 import CTA from './components/CTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppButton phoneNumber="+254112898506" initialMessage="Hello Msema, I'd like to discuss a project." />
     </div>
   );
 }
