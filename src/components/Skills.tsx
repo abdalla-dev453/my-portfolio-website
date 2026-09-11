@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Database, Palette, ServerCog, ShieldCheck, Wrench, type LucideIcon } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 
 interface Skill {
@@ -9,7 +10,7 @@ interface Skill {
 
 interface SkillCategory {
   title: string;
-  icon: string;
+  icon: LucideIcon;
   color: string;
   skills: Skill[];
 }
@@ -17,7 +18,7 @@ interface SkillCategory {
 const skillCategories: SkillCategory[] = [
   {
     title: 'Frontend',
-    icon: '🎨',
+    icon: Palette,
     color: 'bg-accent',
     skills: [
       { name: 'HTML', level: 90 },
@@ -30,7 +31,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: 'Backend',
-    icon: '⚙️',
+    icon: ServerCog,
     color: 'bg-stone-400',
     skills: [
       { name: 'Python', level: 85 },
@@ -41,7 +42,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: 'Database',
-    icon: '🗄️',
+    icon: Database,
     color: 'bg-stone-500',
     skills: [
       { name: 'PostgreSQL', level: 80 },
@@ -51,7 +52,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: 'Tools',
-    icon: '🛠️',
+    icon: Wrench,
     color: 'bg-stone-300',
     skills: [
       { name: 'Git', level: 85 },
@@ -64,7 +65,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: 'Cybersecurity',
-    icon: '🔒',
+    icon: ShieldCheck,
     color: 'bg-accent',
     skills: [
       { name: 'Network Security', level: 70 },
@@ -117,7 +118,7 @@ export default function Skills() {
             className="p-6 rounded-2xl bg-card/50 border border-white/5 card-hover"
           >
             <div className="flex items-center gap-3 mb-5">
-              <span className="text-2xl">{category.icon}</span>
+              <category.icon className="h-5 w-5 text-accent" aria-hidden="true" />
               <h3 className="text-lg font-semibold text-white">{category.title}</h3>
             </div>
             <div className="space-y-4">

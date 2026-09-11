@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --bg-main: #F1E7D6;
+    --bg-main: #FBFAF5;
   }
 
   html {
@@ -12,9 +12,7 @@
     color-scheme: light;
   }
 
-  body {
-    @apply min-h-screen overflow-x-hidden bg-ink font-sans font-medium text-stone-300 antialiased selection:bg-accent selection:text-paper;
-  }
+  body { @apply min-h-screen overflow-x-hidden bg-ink font-sans font-medium text-stone-300 antialiased selection:bg-sun selection:text-forest; }
 
   h1, h2, h3 { @apply font-display; }
 
@@ -30,20 +28,16 @@
 }
 
 @layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 border border-accent bg-accent px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white transition-colors hover:border-secondary-accent hover:bg-transparent hover:text-secondary-accent disabled:opacity-50;
-  }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full border border-sun bg-sun px-5 py-3 text-xs font-bold text-forest transition-all hover:-translate-y-0.5 hover:bg-accent disabled:opacity-50; }
 
-  .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 border border-line px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-stone-300 transition-colors hover:border-secondary-accent hover:text-secondary-accent;
-  }
+  .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-full border border-forest px-5 py-3 text-xs font-bold text-forest transition-all hover:-translate-y-0.5 hover:bg-forest hover:text-[#FBFAF5]; }
 
-  .section-container {
-    @apply mx-auto max-w-7xl px-6 py-24 sm:px-8 md:py-32 lg:px-12;
-  }
+  .section-container { @apply mx-auto max-w-7xl px-6 py-20 sm:px-8 md:py-28 lg:px-12; }
 
-  .eyebrow { @apply text-[11px] font-bold uppercase tracking-[0.24em] text-accent; }
-  .section-title { @apply mt-4 max-w-2xl text-5xl leading-[0.9] text-paper sm:text-6xl; }
+  .eyebrow { @apply text-[11px] font-bold uppercase tracking-[0.18em] text-accent; }
+  .section-title { @apply mt-4 max-w-2xl text-5xl leading-[0.9] tracking-[-.05em] text-paper sm:text-6xl; }
+
+  .skip-link { @apply sr-only fixed left-4 top-4 z-[100] rounded bg-sun px-4 py-2 text-sm font-bold text-forest focus:not-sr-only; }
 }
 
 @layer utilities {
@@ -52,8 +46,8 @@
    * light palette it is deliberately remapped to the same high-contrast
    * navy used by the primary type scale.
    */
-  .text-white { color: #2D2118 !important; }
-  .hover\:text-white:hover { color: #2D2118 !important; }
+  .text-white { color: #1B4835 !important; }
+  .hover\:text-white:hover { color: #1B4835 !important; }
 
   .text-balance {
     text-wrap: balance;
@@ -62,5 +56,20 @@
   .gradient-text { @apply text-accent; }
   .glass, .card-hover { @apply border-line bg-transparent transition-colors hover:border-accent/60; }
   .gradient-border { @apply border border-line bg-transparent; }
-  .rounded-2xl, .rounded-xl, .rounded-lg { border-radius: 0 !important; }
+  .rounded-2xl, .rounded-xl, .rounded-lg { border-radius: 1rem !important; }
+
+  .dark { color-scheme: dark; }
+  .dark body { background: #0f3028; color: #fbfaf5; }
+  .dark .bg-ink, .dark .bg-primary-bg { background-color: #0f3028 !important; }
+  .dark .bg-card { background-color: #173f35 !important; }
+  .dark .bg-forest, .dark .bg-paper { background-color: #123d32 !important; }
+  .dark .text-paper, .dark .text-forest, .dark .text-white { color: #fbfaf5 !important; }
+  .dark .text-stone-300, .dark .text-stone-400, .dark .text-stone-500, .dark .text-muted { color: #d8e3da !important; }
+  .dark .border-line { border-color: #416456 !important; }
+  .dark .bg-sun { color: #1b4835 !important; }
+  .dark .bg-sun .text-forest { color: #1b4835 !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
 }

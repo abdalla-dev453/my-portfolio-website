@@ -12,7 +12,7 @@ export default function SectionWrapper({ children, id, className = '' }: Section
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id={id} className={`relative ${className}`}>
+    <section id={id} className={`relative scroll-mt-24 ${className}`}>
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 40 }}
