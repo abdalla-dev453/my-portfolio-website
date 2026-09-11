@@ -1,0 +1,4 @@
+import { ArrowUpRight, BookOpen } from 'lucide-react';
+import SectionWrapper from './SectionWrapper';
+
+export default function Writing() { return <SectionWrapper id="writing"><div className="flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="eyebrow">Writing</p><h2 className="section-title">Notes from the build process.</h2></div><a href="#contact" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.14em] text-forest hover:text-accent">Suggest a topic <ArrowUpRight className="h-4 w-4" /></a></div><div className="mt-10 border-y border-line py-8"><BookOpen className="h-5 w-5 text-accent" /><p className="mt-4 max-w-xl text-sm leading-7 text-stone-400">Technical articles are being prepared. Expect practical notes on full-stack implementation, web performance, and building secure interfaces.</p></div></SectionWrapper>; }
