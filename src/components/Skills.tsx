@@ -18,7 +18,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Frontend',
     icon: '🎨',
-    color: 'from-blue-500 to-cyan-400',
+    color: 'bg-accent',
     skills: [
       { name: 'HTML', level: 90 },
       { name: 'CSS', level: 85 },
@@ -31,7 +31,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Backend',
     icon: '⚙️',
-    color: 'from-green-500 to-emerald-400',
+    color: 'bg-stone-400',
     skills: [
       { name: 'Python', level: 85 },
       { name: 'Flask', level: 80 },
@@ -42,7 +42,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Database',
     icon: '🗄️',
-    color: 'from-purple-500 to-violet-400',
+    color: 'bg-stone-500',
     skills: [
       { name: 'PostgreSQL', level: 80 },
       { name: 'SQLite', level: 75 },
@@ -52,7 +52,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Tools',
     icon: '🛠️',
-    color: 'from-orange-500 to-amber-400',
+    color: 'bg-stone-300',
     skills: [
       { name: 'Git', level: 85 },
       { name: 'GitHub', level: 85 },
@@ -65,7 +65,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Cybersecurity',
     icon: '🔒',
-    color: 'from-red-500 to-rose-400',
+    color: 'bg-accent',
     skills: [
       { name: 'Network Security', level: 70 },
       { name: 'Web Security', level: 75 },
@@ -89,7 +89,7 @@ function SkillBar({ skill, color, delay }: { skill: Skill; color: string; delay:
           initial={{ width: 0 }}
           animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
           transition={{ duration: 0.8, delay, ease: 'easeOut' }}
-          className={`h-full rounded-full bg-gradient-to-r ${color}`}
+          className={`h-full ${color}`}
         />
       </div>
     </div>

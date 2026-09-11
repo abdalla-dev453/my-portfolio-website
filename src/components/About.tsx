@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Code2, Shield, Lightbulb, GraduationCap } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
-import Image from '../assets/dev.jpeg';
+import Image from '../assets/msema.jpeg';
 
 const highlights = [
   { icon: Code2, label: 'Full-Stack Developer' },
@@ -45,7 +45,7 @@ export default function About() {
             <img
               src={Image}
               alt="Working on code"
-              className="w-full h-80 lg:h-96 object-cover rounded-2xl"
+              className="w-full h-85 lg:h-98 object-cover rounded-2xl"
               loading="lazy"
             />
           </div>

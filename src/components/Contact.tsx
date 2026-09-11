@@ -1,132 +1,18 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, Linkedin, Github, Twitter, Send } from 'lucide-react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { ArrowUpRight, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 
-const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'abdallamsema69@gmail.com', href: 'abdallamsema69@gmail.com' },
-  { icon: Phone, label: 'Phone', value: '+254 112 898 506', href: 'tel:+254112898506' },
-  { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/msema', href: 'https://www.linkedin.com/in/msema-abdalla' },
-  { icon: Github, label: 'GitHub', value: 'github.com/msema', href: 'https://github.com/abdalla-dev453' },
-  { icon: Twitter, label: 'X (Twitter)', value: '@msema_dev', href: 'https://twitter.com/msema_dev' },
-];
+interface ContactFormState { name: string; email: string; subject: string; message: string; }
+type ContactField = keyof ContactFormState;
+const initialForm: ContactFormState = { name: '', email: '', subject: '', message: '' };
+const details = [{ icon: Mail, label: 'Email', value: 'abdallamsema69@gmail.com', href: 'mailto:abdallamsema69@gmail.com' }, { icon: Phone, label: 'Phone', value: '+254 112 898 506', href: 'tel:+254112898506' }, { icon: Linkedin, label: 'LinkedIn', value: 'msema-abdalla', href: 'https://www.linkedin.com/in/msema-abdalla' }, { icon: Github, label: 'GitHub', value: 'abdalla-dev453', href: 'https://github.com/abdalla-dev453' }] as const;
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [form, setForm] = useState<ContactFormState>(initialForm);
   const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setForm({ name: '', email: '', subject: '', message: '' });
-  };
-
-  return (
-    <SectionWrapper id="contact">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-          Let's Build Something <span className="gradient-text">Great</span>
-        </h2>
-        <div className="w-16 h-1 bg-primary-accent mx-auto rounded-full" />
-        <p className="text-text-secondary mt-4 max-w-xl mx-auto text-sm">
-          I'm always open to discussing software engineering opportunities, collaborations,
-          and innovative projects.
-        </p>
-      </div>
-
-      <div className="grid lg:grid-cols-5 gap-10 max-w-5xl mx-auto">
-        {/* Contact info */}
-        <div className="lg:col-span-2 space-y-4">
-          {contactInfo.map((item, idx) => (
-            <motion.a
-              key={item.label}
-              href={item.href}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.08 }}
-              className="flex items-center gap-4 p-4 rounded-xl bg-card/50 border border-white/5 hover:border-primary-accent/20 transition-colors group"
-            >
-              <div className="w-10 h-10 rounded-lg bg-primary-accent/10 flex items-center justify-center group-hover:bg-primary-accent/20 transition-colors">
-                <item.icon className="w-5 h-5 text-primary-accent" />
-              </div>
-              <div>
-                <p className="text-xs text-text-secondary/50">{item.label}</p>
-                <p className="text-sm text-text-secondary group-hover:text-white transition-colors">{item.value}</p>
-              </div>
-            </motion.a>
-          ))}
-        </div>
-
-        {/* Contact form */}
-        <form onSubmit={handleSubmit} className="lg:col-span-3 space-y-4">
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="name" className="block text-xs text-text-secondary/50 mb-1.5">Name</label>
-              <input
-                id="name"
-                type="text"
-                required
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-card/50 border border-white/5 text-sm text-white placeholder:text-text-secondary/30 focus:outline-none focus:border-primary-accent/50 transition-colors"
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-xs text-text-secondary/50 mb-1.5">Email</label>
-              <input
-                id="email"
-                type="email"
-                required
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-card/50 border border-white/5 text-sm text-white placeholder:text-text-secondary/30 focus:outline-none focus:border-primary-accent/50 transition-colors"
-                placeholder="you@email.com"
-              />
-            </div>
-          </div>
-          <div>
-            <label htmlFor="subject" className="block text-xs text-text-secondary/50 mb-1.5">Subject</label>
-            <input
-              id="subject"
-              type="text"
-              required
-              value={form.subject}
-              onChange={(e) => setForm({ ...form, subject: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl bg-card/50 border border-white/5 text-sm text-white placeholder:text-text-secondary/30 focus:outline-none focus:border-primary-accent/50 transition-colors"
-              placeholder="What's this about?"
-            />
-          </div>
-          <div>
-            <label htmlFor="message" className="block text-xs text-text-secondary/50 mb-1.5">Message</label>
-            <textarea
-              id="message"
-              required
-              rows={5}
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl bg-card/50 border border-white/5 text-sm text-white placeholder:text-text-secondary/30 focus:outline-none focus:border-primary-accent/50 transition-colors resize-none"
-              placeholder="Tell me about your project or opportunity..."
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={submitted}
-            className="btn-primary flex items-center gap-2 w-full sm:w-auto justify-center"
-          >
-            {submitted ? (
-              'Message Sent!'
-            ) : (
-              <>
-                <Send className="w-4 h-4" />
-                Send Message
-              </>
-            )}
-          </button>
-        </form>
-      </div>
-    </SectionWrapper>
-  );
+  const updateField = (field: ContactField) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm((current) => ({ ...current, [field]: event.target.value }));
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => { event.preventDefault(); setSubmitted(true); setForm(initialForm); window.setTimeout(() => setSubmitted(false), 3500); };
+  return <SectionWrapper id="contact" className="border-t border-line"><div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24"><div><p className="eyebrow">Get in touch</p><h2 className="section-title">Let’s build something exceptional together.</h2><p className="mt-8 max-w-md text-sm leading-7 text-stone-400">I’m open to thoughtful product work, engineering roles, and collaborations where craft and clarity matter.</p><div className="mt-12 border-y border-line py-6 text-sm text-stone-300"><div className="flex gap-3"><MapPin className="mt-0.5 h-4 w-4 text-accent" /><div><p className="text-xs uppercase tracking-[0.16em] text-stone-500">Based in</p><p className="mt-1">Nairobi, Kenya · available remotely</p></div></div></div><dl className="mt-8 space-y-5">{details.map(({ icon: Icon, label, value, href }) => <div key={label} className="flex items-start gap-3"><Icon className="mt-0.5 h-4 w-4 text-stone-500" /><div><dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500">{label}</dt><dd className="mt-1"><a className="text-sm text-stone-300 transition-colors hover:text-accent" href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">{value}</a></dd></div></div>)}</dl></div><form onSubmit={handleSubmit} className="self-end"><div className="grid gap-x-8 sm:grid-cols-2"><Field label="Name" id="name" value={form.name} onChange={updateField('name')} /><Field label="Email" id="email" type="email" value={form.email} onChange={updateField('email')} /></div><Field label="Subject" id="subject" value={form.subject} onChange={updateField('subject')} /><label className="mt-8 block"><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500">Message</span><textarea id="message" required rows={5} value={form.message} onChange={updateField('message')} placeholder="Tell me about the work." className="mt-3 w-full resize-none border-b border-line bg-transparent pb-3 text-sm leading-7 text-paper outline-none placeholder:text-stone-600 focus:border-accent" /></label><button type="submit" disabled={submitted} className="btn-primary mt-10">{submitted ? 'Message received' : 'Send inquiry'} <ArrowUpRight className="h-4 w-4" /></button></form></div></SectionWrapper>;
 }
+interface FieldProps { label: string; id: ContactField; type?: 'text' | 'email'; value: string; onChange: (event: ChangeEvent<HTMLInputElement>) => void; }
+function Field({ label, id, type = 'text', value, onChange }: FieldProps) { return <label className="mt-8 block"><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500">{label}</span><input id={id} required type={type} value={value} onChange={onChange} className="mt-3 w-full border-b border-line bg-transparent pb-3 text-sm text-paper outline-none placeholder:text-stone-600 focus:border-accent" placeholder={label === 'Name' ? 'Your name' : label === 'Email' ? 'you@company.com' : 'A short introduction'} /></label>; }
