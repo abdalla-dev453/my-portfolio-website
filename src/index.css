@@ -10,9 +10,10 @@
   html {
     scroll-behavior: smooth;
     color-scheme: light;
+    overflow-x: hidden;
   }
 
-  body { @apply min-h-screen overflow-x-hidden bg-ink font-sans font-medium text-stone-300 antialiased selection:bg-sun selection:text-forest; }
+  body { @apply min-h-screen max-w-full overflow-x-hidden bg-ink font-sans font-medium text-stone-300 antialiased selection:bg-sun selection:text-forest; }
 
   h1, h2, h3 { @apply font-display; }
 
@@ -32,23 +33,20 @@
 
   .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-full border border-forest px-5 py-3 text-xs font-bold text-forest transition-all hover:-translate-y-0.5 hover:bg-forest hover:text-[#FBFAF5]; }
 
-  .section-container { @apply mx-auto max-w-7xl px-6 py-20 sm:px-8 md:py-28 lg:px-12; }
+  .section-container { @apply mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 sm:py-20 md:py-28 lg:px-12; }
 
   .eyebrow { @apply text-[11px] font-bold uppercase tracking-[0.18em] text-accent; }
-  .section-title { @apply mt-4 max-w-2xl text-5xl leading-[0.9] tracking-[-.05em] text-paper sm:text-6xl; }
+  .section-title { @apply mt-4 max-w-2xl text-[clamp(2.65rem,11vw,3.75rem)] leading-[0.92] tracking-[-.05em] text-paper sm:text-6xl; }
+
+  @media (max-width: 639px) {
+    .section-container { padding-inline: 1.25rem; }
+    .section-title { overflow-wrap: anywhere; }
+  }
 
   .skip-link { @apply sr-only fixed left-4 top-4 z-[100] rounded bg-sun px-4 py-2 text-sm font-bold text-forest focus:not-sr-only; }
 }
 
 @layer utilities {
-  /*
-   * Legacy sections use Tailwind's white utility for headings.  In the
-   * light palette it is deliberately remapped to the same high-contrast
-   * navy used by the primary type scale.
-   */
-  .text-white { color: #1B4835 !important; }
-  .hover\:text-white:hover { color: #1B4835 !important; }
-
   .text-balance {
     text-wrap: balance;
   }
@@ -63,7 +61,7 @@
   .dark .bg-ink, .dark .bg-primary-bg { background-color: #0f3028 !important; }
   .dark .bg-card { background-color: #173f35 !important; }
   .dark .bg-forest, .dark .bg-paper { background-color: #123d32 !important; }
-  .dark .text-paper, .dark .text-forest, .dark .text-white { color: #fbfaf5 !important; }
+  .dark .text-paper, .dark .text-forest { color: #fbfaf5 !important; }
   .dark .text-stone-300, .dark .text-stone-400, .dark .text-stone-500, .dark .text-muted { color: #d8e3da !important; }
   .dark .border-line { border-color: #416456 !important; }
   .dark .bg-sun { color: #1b4835 !important; }

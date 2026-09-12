@@ -15,8 +15,8 @@ export default function SectionWrapper({ children, id, className = '' }: Section
     <section id={id} className={`relative scroll-mt-24 ${className}`}>
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, y: 40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+        initial={{ y: 28 }}
+        animate={isInView ? { y: 0 } : { y: 28 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
         className="section-container"
       >

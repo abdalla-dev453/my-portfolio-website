@@ -9,10 +9,10 @@ export default function About() {
   return (
     <SectionWrapper id="about" className="overflow-hidden bg-forest">
       <div className="grid items-center gap-14 lg:grid-cols-[.9fr_1.1fr] lg:gap-24">
-        <motion.div initial={{ opacity: 0, scale: .92 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: .3 }} transition={{ duration: .7 }} className="mx-auto w-full max-w-md">
+        <motion.div initial={{ scale: .92 }} whileInView={{ scale: 1 }} viewport={{ once: true, amount: .3 }} transition={{ duration: .7 }} className="mx-auto w-full max-w-md">
           <div className="overflow-hidden border border-[#FBFAF5]/20"><img src={portrait} alt="Msema Abdalla" className="aspect-square w-full object-cover object-top" loading="lazy" /></div>
         </motion.div>
-        <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .3 }} transition={{ duration: .7, delay: .12 }}>
+        <motion.div initial={{ x: 30 }} whileInView={{ x: 0 }} viewport={{ once: true, amount: .3 }} transition={{ duration: .7, delay: .12 }}>
           <p className="text-xs font-bold uppercase tracking-[.18em] text-sun">— About me</p>
           <h2 className="mt-4 text-5xl font-bold leading-[.9] tracking-[-.05em] text-[#FBFAF5] sm:text-6xl">A builder who cares about <em className="font-medium text-sun">the details.</em></h2>
           <p className="mt-7 max-w-xl text-sm leading-7 text-[#FBFAF5]/75">I’m Msema Abdalla, a full-stack software engineer trained at Moringa School. I bring together practical product thinking, clean implementation, and a security-first approach.</p>

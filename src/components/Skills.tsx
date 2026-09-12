@@ -82,10 +82,10 @@ function SkillBar({ skill, color, delay }: { skill: Skill; color: string; delay:
   return (
     <div ref={ref} className="space-y-1.5">
       <div className="flex justify-between text-sm">
-        <span className="text-text-secondary">{skill.name}</span>
-        <span className="text-text-secondary/50 font-mono text-xs">{skill.level}%</span>
+        <span className="text-stone-300">{skill.name}</span>
+        <span className="font-mono text-xs text-stone-500">{skill.level}%</span>
       </div>
-      <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+      <div className="h-2 overflow-hidden rounded-full bg-line">
         <motion.div
           initial={{ width: 0 }}
           animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
@@ -111,15 +111,15 @@ export default function Skills() {
         {skillCategories.map((category, catIdx) => (
           <motion.div
             key={category.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: catIdx * 0.1 }}
-            className="p-6 rounded-2xl bg-card/50 border border-white/5 card-hover"
+            className="rounded-2xl border border-line bg-card p-6 card-hover"
           >
             <div className="flex items-center gap-3 mb-5">
               <category.icon className="h-5 w-5 text-accent" aria-hidden="true" />
-              <h3 className="text-lg font-semibold text-white">{category.title}</h3>
+              <h3 className="text-lg font-semibold text-paper">{category.title}</h3>
             </div>
             <div className="space-y-4">
               {category.skills.map((skill, skillIdx) => (
