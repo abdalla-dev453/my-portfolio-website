@@ -1,4 +1,4 @@
-import { ArrowUpRight, Check } from 'lucide-react';
+import { ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 
 const plans = [
@@ -7,6 +7,70 @@ const plans = [
   { name: 'Custom build', price: 'Let’s scope it', description: 'For platforms, dashboards, e-commerce, or product ideas that need tailored engineering.', features: ['Complex user flows', 'Authentication and data', 'Third-party integrations', 'Phased delivery plan'] },
 ];
 
+const flow = [
+  'Discovery call to clarify the opportunity and constraints',
+  'Proposal and scope with timeline, deliverables, and milestones',
+  'Design + build with feedback loops and launch readiness checks',
+];
+
 export default function Pricing() {
-  return <SectionWrapper id="pricing" className="bg-forest"><div className="mx-auto max-w-3xl text-center"><p className="text-xs font-bold uppercase tracking-[0.18em] text-sun">Web development pricing</p><h2 className="mt-4 text-5xl font-bold leading-[.9] tracking-[-.05em] text-[#FBFAF5] sm:text-6xl">A clear scope before we start.</h2><p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#FBFAF5]/70">Starting estimates are based on website size and technical complexity. Every project receives a tailored written quote before work begins.</p></div><div className="mt-14 grid gap-5 lg:grid-cols-3">{plans.map((plan) => <article key={plan.name} className={`flex min-h-[390px] flex-col border p-6 ${plan.featured ? 'border-sun bg-sun text-forest shadow-[0_20px_45px_rgba(0,0,0,.18)]' : 'border-[#FBFAF5]/20 bg-[#FBFAF5]/[.06] text-[#FBFAF5]'}`}><p className={`text-[10px] font-bold uppercase tracking-[0.18em] ${plan.featured ? 'text-forest/70' : 'text-sun'}`}>{plan.featured ? 'Most popular' : 'Website package'}</p><h3 className="mt-6 text-3xl font-bold tracking-[-.04em]">{plan.name}</h3><p className="mt-3 text-xl font-bold">{plan.price}</p><p className={`mt-5 text-sm leading-6 ${plan.featured ? 'text-forest/75' : 'text-[#FBFAF5]/70'}`}>{plan.description}</p><ul className="mt-7 space-y-3">{plan.features.map((feature) => <li key={feature} className="flex items-center gap-3 text-sm"><Check className="h-4 w-4 shrink-0" aria-hidden="true" />{feature}</li>)}</ul><a href="#contact" className={`mt-auto inline-flex items-center gap-2 pt-8 text-xs font-bold uppercase tracking-[0.14em] ${plan.featured ? 'hover:text-forest/70' : 'text-sun hover:text-[#FBFAF5]'}`}>Discuss this project <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a></article>)}</div></SectionWrapper>;
+  return (
+    <SectionWrapper id="pricing" className="bg-forest">
+      <div className="mx-auto max-w-3xl text-center">
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-sun">Potential client flow</p>
+        <h2 className="mt-4 text-5xl font-bold leading-[.9] tracking-[-.05em] text-[#FBFAF5] sm:text-6xl">A clear path from first conversation to launch.</h2>
+        <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#FBFAF5]/70">
+          Starting estimates are based on website size and technical complexity. Every project receives a tailored written quote before work begins.
+        </p>
+      </div>
+
+      <div className="mt-10 grid gap-4 md:grid-cols-3">
+        {flow.map((step, index) => (
+          <div key={step} className="rounded-[1.5rem] border border-[#FBFAF5]/15 bg-[#FBFAF5]/[0.06] p-5 text-left">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-sun">0{index + 1}</p>
+            <p className="mt-4 text-sm leading-6 text-[#FBFAF5]/80">{step}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-14 grid gap-5 lg:grid-cols-3">
+        {plans.map((plan) => (
+          <article
+            key={plan.name}
+            className={`flex min-h-[390px] flex-col border p-6 ${plan.featured ? 'border-sun bg-sun text-forest shadow-[0_20px_45px_rgba(0,0,0,.18)]' : 'border-[#FBFAF5]/20 bg-[#FBFAF5]/[.06] text-[#FBFAF5]'}`}
+          >
+            <p className={`text-[10px] font-bold uppercase tracking-[0.18em] ${plan.featured ? 'text-forest/70' : 'text-sun'}`}>
+              {plan.featured ? 'Most popular' : 'Website package'}
+            </p>
+            <h3 className="mt-6 text-3xl font-bold tracking-[-.04em]">{plan.name}</h3>
+            <p className="mt-3 text-xl font-bold">{plan.price}</p>
+            <p className={`mt-5 text-sm leading-6 ${plan.featured ? 'text-forest/75' : 'text-[#FBFAF5]/70'}`}>{plan.description}</p>
+            <ul className="mt-7 space-y-3">
+              {plan.features.map((feature) => (
+                <li key={feature} className="flex items-center gap-3 text-sm">
+                  <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <a href="#contact" className={`mt-auto inline-flex items-center gap-2 pt-8 text-xs font-bold uppercase tracking-[0.14em] ${plan.featured ? 'hover:text-forest/70' : 'text-sun hover:text-[#FBFAF5]'}`}>
+              Discuss this project <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div className="mt-12 rounded-[1.75rem] border border-[#FBFAF5]/15 bg-[#FBFAF5]/[0.06] p-5 sm:p-7">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-3">
+            <Sparkles className="h-5 w-5 text-sun" />
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#FBFAF5]/80">Client-first engagement</p>
+          </div>
+          <a href="#contact" className="btn-secondary border-[#FBFAF5]/20 bg-transparent text-[#FBFAF5] hover:bg-[#FBFAF5] hover:text-forest">
+            Request a quote
+          </a>
+        </div>
+      </div>
+    </SectionWrapper>
+  );
 }

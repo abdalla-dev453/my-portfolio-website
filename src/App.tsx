@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -16,19 +17,45 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import NotFound from './components/NotFound';
+import CaseStudyPage from './components/CaseStudyPage';
 import { siteConfig } from './data/site';
 
+function getCaseStudySlugFromHash() {
+  const hash = window.location.hash.replace(/^#/, '');
+  if (!hash.startsWith('case-study/')) return null;
+  return hash.replace(/^case-study\//, '');
+}
+
 function App() {
+  const [caseStudySlug, setCaseStudySlug] = useState<string | null>(() => getCaseStudySlugFromHash());
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCaseStudySlug(getCaseStudySlugFromHash());
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  if (caseStudySlug) return <CaseStudyPage slug={caseStudySlug} />;
+
   const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
   const isHome = window.location.pathname === `${basePath}/` || window.location.pathname === basePath;
 
   if (!isHome) return <NotFound />;
 
   return (
-    <div className="min-h-screen bg-primary-bg text-text-primary">
-      <Navbar />
+    <div className="site-shell min-h-screen bg-primary-bg text-text-primary">
+      <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
+        <div className="ambient-orb ambient-orb-one" />
+        <div className="ambient-orb ambient-orb-two" />
+        <div className="ambient-orb ambient-orb-three" />
+      </div>
+
       <a href="#main-content" className="skip-link">Skip to main content</a>
-      <main id="main-content" tabIndex={-1}>
+      <Navbar />
+      <main id="main-content" tabIndex={-1} className="relative z-10">
         <Hero />
         <About />
         <Services />
