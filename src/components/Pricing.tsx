@@ -1,73 +1,98 @@
-import { ArrowUpRight, Check, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Check } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 
 const plans = [
-  { name: 'Essential', price: 'From KSh 35,000', description: 'For a focused online presence that explains what you do and turns visitors into enquiries.', features: ['Up to 5 pages', 'Responsive design', 'Contact form setup', 'Basic SEO foundations'] },
-  { name: 'Growth', price: 'From KSh 80,000', description: 'For businesses that need richer journeys, custom features, and a stronger conversion path.', features: ['Up to 10 pages', 'Custom UI and interactions', 'CMS or API integration', 'Performance optimisation'], featured: true },
-  { name: 'Custom build', price: 'Let’s scope it', description: 'For platforms, dashboards, e-commerce, or product ideas that need tailored engineering.', features: ['Complex user flows', 'Authentication and data', 'Third-party integrations', 'Phased delivery plan'] },
+  {
+    name: 'Essential',
+    price: 'From KSh 35,000',
+    description: 'For a focused online presence that explains what you do and turns visitors into enquiries.',
+    features: ['Up to 5 pages', 'Responsive design', 'Contact form setup', 'Basic SEO foundations'],
+  },
+  {
+    name: 'Growth',
+    price: 'From KSh 80,000',
+    description: 'For businesses that need richer journeys, custom features, and a stronger conversion path.',
+    features: ['Up to 10 pages', 'Custom UI and interactions', 'CMS or API integration', 'Performance optimisation'],
+    featured: true,
+  },
+  {
+    name: 'Custom build',
+    price: 'Let’s scope it',
+    description: 'For platforms, dashboards, e-commerce, or product ideas that need tailored engineering.',
+    features: ['Complex user flows', 'Authentication and data', 'Third-party integrations', 'Phased delivery plan'],
+  },
 ];
 
 const flow = [
-  'Discovery call to clarify the opportunity and constraints',
-  'Proposal and scope with timeline, deliverables, and milestones',
-  'Design + build with feedback loops and launch readiness checks',
+  'Discovery call to clarify the opportunity, constraints, and timeline',
+  'Proposal and scope with clear milestones and deliverables',
+  'Design + build with regular feedback and launch readiness checks',
 ];
 
 export default function Pricing() {
   return (
-    <SectionWrapper id="pricing" className="bg-forest">
+    <SectionWrapper id="pricing" className="border-t border-line bg-secondary-bg">
       <div className="mx-auto max-w-3xl text-center">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-sun">Potential client flow</p>
-        <h2 className="mt-4 text-5xl font-bold leading-[.9] tracking-[-.05em] text-[#FBFAF5] sm:text-6xl">A clear path from first conversation to launch.</h2>
-        <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#FBFAF5]/70">
-          Starting estimates are based on website size and technical complexity. Every project receives a tailored written quote before work begins.
+        <p className="eyebrow">Pricing &amp; Process</p>
+        <h2 className="section-title">A clear path from first conversation to launch.</h2>
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-stone-400">
+          Starting estimates are based on scope and technical complexity. Every engagement receives a tailored written quote before work begins.
         </p>
       </div>
 
       <div className="mt-10 grid gap-4 md:grid-cols-3">
         {flow.map((step, index) => (
-          <div key={step} className="rounded-[1.5rem] border border-[#FBFAF5]/15 bg-[#FBFAF5]/[0.06] p-5 text-left">
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-sun">0{index + 1}</p>
-            <p className="mt-4 text-sm leading-6 text-[#FBFAF5]/80">{step}</p>
+          <div key={step} className="rounded-xl border border-line bg-card p-5 text-left shadow-sm">
+            <p className="font-mono text-xs font-semibold text-accent">0{index + 1}</p>
+            <p className="mt-2 text-sm leading-6 text-paper">{step}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-14 grid gap-5 lg:grid-cols-3">
+      <div className="mt-12 grid gap-6 lg:grid-cols-3">
         {plans.map((plan) => (
           <article
             key={plan.name}
-            className={`flex min-h-[390px] flex-col border p-6 ${plan.featured ? 'border-sun bg-sun text-forest shadow-[0_20px_45px_rgba(0,0,0,.18)]' : 'border-[#FBFAF5]/20 bg-[#FBFAF5]/[.06] text-[#FBFAF5]'}`}
+            className={`flex min-h-[380px] flex-col rounded-2xl border p-6 transition-all duration-200 sm:p-7 ${plan.featured
+                ? 'border-accent bg-card shadow-md ring-2 ring-accent/20'
+                : 'border-line bg-card shadow-sm hover:border-slate-300'
+              }`}
           >
-            <p className={`text-[10px] font-bold uppercase tracking-[0.18em] ${plan.featured ? 'text-forest/70' : 'text-sun'}`}>
-              {plan.featured ? 'Most popular' : 'Website package'}
-            </p>
-            <h3 className="mt-6 text-3xl font-bold tracking-[-.04em]">{plan.name}</h3>
-            <p className="mt-3 text-xl font-bold">{plan.price}</p>
-            <p className={`mt-5 text-sm leading-6 ${plan.featured ? 'text-forest/75' : 'text-[#FBFAF5]/70'}`}>{plan.description}</p>
-            <ul className="mt-7 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className={`text-[11px] font-semibold uppercase tracking-wider ${plan.featured ? 'text-accent' : 'text-muted'}`}>
+                {plan.featured ? 'Most popular' : 'Standard package'}
+              </span>
+            </div>
+            <h3 className="mt-4 text-2xl font-bold tracking-tight text-paper">{plan.name}</h3>
+            <p className="mt-2 text-xl font-bold text-accent">{plan.price}</p>
+            <p className="mt-4 text-sm leading-6 text-stone-400">{plan.description}</p>
+            <ul className="mt-6 space-y-3">
               {plan.features.map((feature) => (
-                <li key={feature} className="flex items-center gap-3 text-sm">
-                  <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <li key={feature} className="flex items-center gap-2.5 text-sm text-paper">
+                  <Check className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                   {feature}
                 </li>
               ))}
             </ul>
-            <a href="#contact" className={`mt-auto inline-flex items-center gap-2 pt-8 text-xs font-bold uppercase tracking-[0.14em] ${plan.featured ? 'hover:text-forest/70' : 'text-sun hover:text-[#FBFAF5]'}`}>
+            <a
+              href="#contact"
+              className={`mt-auto inline-flex items-center gap-2 pt-6 text-xs font-semibold uppercase tracking-wider ${plan.featured ? 'text-accent hover:text-blue-700' : 'text-paper hover:text-accent'
+                }`}
+            >
               Discuss this project <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
           </article>
         ))}
       </div>
 
-      <div className="mt-12 rounded-[1.75rem] border border-[#FBFAF5]/15 bg-[#FBFAF5]/[0.06] p-5 sm:p-7">
+      <div className="mt-10 rounded-2xl border border-line bg-card p-6 shadow-sm sm:p-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <Sparkles className="h-5 w-5 text-sun" />
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#FBFAF5]/80">Client-first engagement</p>
+          <div>
+            <p className="text-sm font-semibold text-paper">Have a unique scope or existing codebase?</p>
+            <p className="mt-1 text-xs text-stone-400">I can audit the project and propose a practical milestone-based delivery plan.</p>
           </div>
-          <a href="#contact" className="btn-secondary border-[#FBFAF5]/20 bg-transparent text-[#FBFAF5] hover:bg-[#FBFAF5] hover:text-forest">
-            Request a quote
+          <a href="#contact" className="btn-secondary shrink-0">
+            Request custom quote
           </a>
         </div>
       </div>

@@ -24,23 +24,27 @@ const steps = [
 
 export default function Process() {
   return (
-    <SectionWrapper id="process" className="border-y border-line bg-card">
-      <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+    <SectionWrapper id="process" className="border-t border-line bg-secondary-bg">
+      <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div>
           <p className="eyebrow">How I work</p>
           <h2 className="section-title">A calm process for ambitious work.</h2>
-          <p className="mt-7 max-w-md text-sm leading-7 text-stone-400">Clear communication and small, deliberate decisions keep the work moving without losing sight of the people using it.</p>
+          <p className="mt-5 max-w-md text-sm leading-7 text-stone-400">
+            Clear communication and deliberate decisions keep the work moving forward without losing sight of the people using it.
+          </p>
         </div>
-        <ol className="divide-y divide-line border-y border-line">
+        <ol className="divide-y divide-line rounded-2xl border border-line bg-card p-6 shadow-sm sm:p-8">
           {steps.map(({ icon: Icon, number, title, text }) => (
-            <li key={number} className="grid gap-5 py-7 sm:grid-cols-[3rem_1fr] sm:gap-7">
-              <div className="flex items-center gap-4 sm:block">
-                <span className="font-mono text-xs font-bold tracking-[.16em] text-accent">{number}</span>
-                <Icon className="mt-5 hidden h-5 w-5 text-forest sm:block" aria-hidden="true" />
+            <li key={number} className="grid gap-4 py-6 first:pt-0 last:pb-0 sm:grid-cols-[3.5rem_1fr] sm:gap-6">
+              <div className="flex items-center gap-3 sm:block">
+                <span className="font-mono text-xs font-semibold text-accent">{number}</span>
+                <div className="mt-3 hidden h-8 w-8 place-items-center rounded-lg bg-blue-50 text-accent dark:bg-blue-950/50 sm:grid">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </div>
               </div>
               <div>
-                <h3 className="text-2xl font-bold tracking-[-.035em] text-paper">{title}</h3>
-                <p className="mt-3 max-w-lg text-sm leading-7 text-stone-400">{text}</p>
+                <h3 className="text-xl font-bold tracking-tight text-paper">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-stone-400">{text}</p>
               </div>
             </li>
           ))}

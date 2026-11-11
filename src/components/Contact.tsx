@@ -63,12 +63,154 @@ export default function Contact() {
     ? 'Thanks — your message has been sent.'
     : 'Your email client is opening with your message ready to send.';
 
-  return <SectionWrapper id="contact" className="code-surface border-t border-line"><div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24"><div><p className="eyebrow">Get in touch</p><h2 className="section-title">Let’s build something exceptional together.</h2><p className="mt-8 max-w-md text-sm leading-7 text-stone-400">I’m open to thoughtful product work, engineering roles, and collaborations where craft and clarity matter.</p><div className="mt-12 border-y border-line py-6 text-sm text-stone-300"><div className="flex gap-3"><MapPin className="mt-0.5 h-4 w-4 text-accent" /><div><p className="text-xs uppercase tracking-[0.16em] text-stone-500">Based in</p><p className="mt-1">{siteConfig.location} · available remotely</p></div></div></div><dl className="mt-8 space-y-5">{details.map(({ icon: Icon, label, value, href }) => <div key={label} className="flex items-start gap-3"><Icon className="mt-0.5 h-4 w-4 text-stone-500" /><div><dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500">{label}</dt><dd className="mt-1"><a className="text-sm text-stone-300 transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent" href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">{value}</a></dd></div></div>)}</dl></div><form noValidate onSubmit={handleSubmit} className="self-end border border-line bg-ink p-6 sm:p-8"><p className="text-xs font-bold uppercase tracking-[.16em] text-stone-500">Project enquiry</p><div className="grid gap-x-8 sm:grid-cols-2"><Field label="Name" id="name" value={form.name} error={errors.name} onChange={updateField('name')} /><Field label="Email" id="email" type="email" value={form.email} error={errors.email} onChange={updateField('email')} /></div><Field label="Subject" id="subject" value={form.subject} error={errors.subject} onChange={updateField('subject')} /><label className="mt-8 block"><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500">Message</span><textarea id="message" aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? 'message-error' : undefined} required rows={5} value={form.message} onChange={updateField('message')} placeholder="Tell me about the work." className="mt-3 w-full resize-none border-b border-line bg-transparent pb-3 text-sm leading-7 text-paper outline-none placeholder:text-stone-600 focus:border-accent focus-visible:ring-2 focus-visible:ring-accent/40" />{errors.message && <p id="message-error" className="mt-2 text-xs text-red-400">{errors.message}</p>}</label><button type="submit" disabled={submissionState === 'submitting'} className="btn-primary mt-10">{submissionState === 'submitting' ? 'Sending…' : 'Send inquiry'} <ArrowUpRight className="h-4 w-4" /></button>{submissionState === 'sent' && <p role="status" className="mt-5 flex items-center gap-2 text-sm text-success"><CheckCircle2 className="h-4 w-4" />{successMessage}</p>}</form></div></SectionWrapper>;
+  return (
+    <SectionWrapper id="contact" className="border-t border-line bg-secondary-bg">
+      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        <div>
+          <p className="eyebrow">Get in touch</p>
+          <h2 className="section-title">Let’s build something exceptional together.</h2>
+          <p className="mt-5 max-w-md text-base leading-7 text-stone-400">
+            I’m open to full-stack engineering roles, freelance builds, and technical collaborations where craft, reliability, and clear communication matter.
+          </p>
+
+          <div className="mt-8 rounded-2xl border border-line bg-card p-5 shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className="grid h-9 w-9 place-items-center rounded-xl bg-blue-50 text-accent dark:bg-blue-950/50">
+                <MapPin className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-paper">{siteConfig.location}</p>
+                <p className="text-xs text-muted">Available remotely worldwide</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 space-y-3">
+            {details.map(({ icon: Icon, label, value, href }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel="noreferrer"
+                className="flex items-center gap-3.5 rounded-xl border border-line bg-card p-3.5 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow"
+              >
+                <div className="grid h-8 w-8 place-items-center rounded-lg bg-slate-100 text-stone-400 dark:bg-slate-800">
+                  <Icon className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted">{label}</p>
+                  <p className="text-sm font-medium text-paper">{value}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-line bg-card p-6 shadow-sm sm:p-8">
+          <div className="border-b border-line pb-4">
+            <h3 className="text-lg font-bold text-paper">Send a message</h3>
+            <p className="mt-1 text-xs text-stone-400">Fill out the form below and I will respond within 24 hours.</p>
+          </div>
+
+          <form noValidate onSubmit={handleSubmit} className="mt-6 space-y-5">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field
+                label="Name"
+                id="name"
+                value={form.name}
+                error={errors.name}
+                onChange={updateField('name')}
+              />
+              <Field
+                label="Email"
+                id="email"
+                type="email"
+                value={form.email}
+                error={errors.email}
+                onChange={updateField('email')}
+              />
+            </div>
+
+            <Field
+              label="Subject"
+              id="subject"
+              value={form.subject}
+              error={errors.subject}
+              onChange={updateField('subject')}
+            />
+
+            <div>
+              <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-muted">
+                Message
+              </label>
+              <textarea
+                id="message"
+                required
+                rows={5}
+                value={form.message}
+                onChange={updateField('message')}
+                placeholder="Tell me about your project, timeline, and goals..."
+                aria-invalid={Boolean(errors.message)}
+                aria-describedby={errors.message ? 'message-error' : undefined}
+                className="mt-2 w-full rounded-xl border border-line bg-secondary-bg px-4 py-3 text-sm text-paper placeholder-slate-400 transition-colors focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/20 dark:focus:bg-slate-900"
+              />
+              {errors.message && <p id="message-error" className="mt-1.5 text-xs text-red-500">{errors.message}</p>}
+            </div>
+
+            <button
+              type="submit"
+              disabled={submissionState === 'submitting'}
+              className="btn-primary w-full sm:w-auto"
+            >
+              {submissionState === 'submitting' ? 'Sending message...' : 'Send message'}{' '}
+              <ArrowUpRight className="h-4 w-4" />
+            </button>
+
+            {submissionState === 'sent' && (
+              <div role="status" className="flex items-center gap-2 rounded-xl bg-emerald-50 p-3.5 text-xs font-semibold text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                <span>{successMessage}</span>
+              </div>
+            )}
+          </form>
+        </div>
+      </div>
+    </SectionWrapper>
+  );
 }
 
 function endpointConfigured() {
   return Boolean(import.meta.env.VITE_CONTACT_FORM_ENDPOINT);
 }
 
-interface FieldProps { label: string; id: ContactField; type?: 'text' | 'email'; value: string; error?: string; onChange: (event: ChangeEvent<HTMLInputElement>) => void; }
-function Field({ label, id, type = 'text', value, error, onChange }: FieldProps) { return <label className="mt-8 block"><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500">{label}</span><input id={id} required type={type} autoComplete={id === 'name' ? 'name' : id === 'email' ? 'email' : 'off'} value={value} aria-invalid={Boolean(error)} aria-describedby={error ? `${id}-error` : undefined} onChange={onChange} className="mt-3 w-full border-b border-line bg-transparent pb-3 text-sm text-paper outline-none placeholder:text-stone-600 focus:border-accent focus-visible:ring-2 focus-visible:ring-accent/40" placeholder={label === 'Name' ? 'Your name' : label === 'Email' ? 'you@company.com' : 'A short introduction'} />{error && <p id={`${id}-error`} className="mt-2 text-xs text-red-400">{error}</p>}</label>; }
+interface FieldProps {
+  label: string;
+  id: ContactField;
+  type?: 'text' | 'email';
+  value: string;
+  error?: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+function Field({ label, id, type = 'text', value, error, onChange }: FieldProps) {
+  return (
+    <div>
+      <label htmlFor={id} className="block text-xs font-semibold uppercase tracking-wider text-muted">
+        {label}
+      </label>
+      <input
+        id={id}
+        required
+        type={type}
+        autoComplete={id === 'name' ? 'name' : id === 'email' ? 'email' : 'off'}
+        value={value}
+        onChange={onChange}
+        placeholder={label === 'Name' ? 'Alex Doe' : label === 'Email' ? 'alex@company.com' : 'Project overview'}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? `${id}-error` : undefined}
+        className="mt-2 w-full rounded-xl border border-line bg-secondary-bg px-4 py-2.5 text-sm text-paper placeholder-slate-400 transition-colors focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/20 dark:focus:bg-slate-900"
+      />
+      {error && <p id={`${id}-error`} className="mt-1.5 text-xs text-red-500">{error}</p>}
+    </div>
+  );
+}

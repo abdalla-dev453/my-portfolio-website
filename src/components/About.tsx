@@ -17,46 +17,66 @@ const strengths = [
 
 export default function About() {
   return (
-    <SectionWrapper id="about" className="overflow-hidden bg-forest">
-      <div className="grid items-center gap-14 lg:grid-cols-[.9fr_1.1fr] lg:gap-24">
-        <motion.div initial={{ scale: 0.92 }} whileInView={{ scale: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }} className="mx-auto w-full max-w-md">
-          <div className="overflow-hidden rounded-[2rem] border border-[#FBFAF5]/20 bg-[#FBFAF5]/10 p-2 shadow-[0_30px_80px_rgba(0,0,0,0.18)]">
-            <img src={portrait} alt="Msema Abdalla" className="aspect-square w-full rounded-[1.5rem] object-cover object-top" loading="lazy" />
+    <SectionWrapper id="about" className="overflow-hidden border-t border-line bg-secondary-bg">
+      <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto w-full max-w-md"
+        >
+          <div className="overflow-hidden rounded-2xl border border-line bg-card p-3 shadow-md">
+            <img
+              src={portrait}
+              alt="Msema Abdalla"
+              className="aspect-square w-full rounded-xl object-cover object-top"
+              loading="lazy"
+            />
           </div>
         </motion.div>
 
-        <motion.div initial={{ x: 30 }} whileInView={{ x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7, delay: 0.12 }}>
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-sun">— About me</p>
-          <h2 className="mt-4 text-5xl font-bold leading-[0.9] tracking-[-0.05em] text-[#FBFAF5] sm:text-6xl">
-            A builder who cares about <em className="font-medium text-sun">the details.</em>
+        <motion.div
+          initial={{ x: 24, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <p className="eyebrow">— About me</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-paper sm:text-4xl lg:text-5xl">
+            A builder who cares about <span className="text-accent">the details.</span>
           </h2>
 
-          <p className="mt-7 max-w-xl text-sm leading-7 text-[#FBFAF5]/75">
-            I help people and businesses turn big ideas into polished digital products. My work blends practical product thinking, clean engineering, and a security-first mindset so what gets built feels premium and remains reliable over time.
+          <p className="mt-5 max-w-xl text-base leading-7 text-stone-400">
+            I help people and businesses turn big ideas into polished digital products. My work blends practical product thinking, clean engineering, and a security-first mindset so what gets built feels dependable and performs under real-world use.
           </p>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {strengths.map(({ icon: Icon, title, text }) => (
-              <div key={title} className="rounded-2xl border border-[#FBFAF5]/15 bg-[#FBFAF5]/[0.06] p-4">
-                <Icon className="h-5 w-5 text-sun" />
-                <h3 className="mt-5 text-sm font-bold text-[#FBFAF5]">{title}</h3>
-                <p className="mt-1 text-xs leading-5 text-[#FBFAF5]/60">{text}</p>
+              <div key={title} className="rounded-xl border border-line bg-card p-4 shadow-sm">
+                <div className="grid h-9 w-9 place-items-center rounded-lg bg-blue-50 text-accent dark:bg-blue-950/50">
+                  <Icon className="h-4 w-4" />
+                </div>
+                <h3 className="mt-3 text-sm font-semibold text-paper">{title}</h3>
+                <p className="mt-1 text-xs leading-5 text-muted">{text}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 grid grid-cols-3 gap-3 border-y border-[#FBFAF5]/20 py-6">
+          <div className="mt-8 grid grid-cols-3 gap-4 border-y border-line py-5">
             {stats.map((stat) => (
               <div key={stat.number}>
-                <p className="text-xl font-bold text-sun sm:text-2xl">{stat.number}</p>
-                <p className="mt-1 text-[10px] leading-4 text-[#FBFAF5]/60">{stat.label}</p>
+                <p className="text-xl font-bold text-accent sm:text-2xl">{stat.number}</p>
+                <p className="mt-1 text-xs text-muted">{stat.label}</p>
               </div>
             ))}
           </div>
 
-          <a href="#contact" className="mt-9 inline-flex items-center gap-2 rounded-full border border-sun px-5 py-3 text-xs font-bold text-[#FBFAF5] transition hover:bg-sun hover:text-forest">
-            Let’s work together <ArrowDownToLine className="h-4 w-4" />
-          </a>
+          <div className="mt-8">
+            <a href="#contact" className="btn-primary">
+              Let’s work together <ArrowDownToLine className="h-4 w-4" />
+            </a>
+          </div>
         </motion.div>
       </div>
     </SectionWrapper>

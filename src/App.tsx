@@ -47,15 +47,9 @@ function App() {
 
   return (
     <div className="site-shell min-h-screen bg-primary-bg text-text-primary">
-      <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
-        <div className="ambient-orb ambient-orb-one" />
-        <div className="ambient-orb ambient-orb-two" />
-        <div className="ambient-orb ambient-orb-three" />
-      </div>
-
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navbar />
-      <main id="main-content" tabIndex={-1} className="relative z-10">
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <About />
         <Services />

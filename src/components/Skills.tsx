@@ -11,7 +11,6 @@ interface Skill {
 interface SkillCategory {
   title: string;
   icon: LucideIcon;
-  color: string;
   skills: Skill[];
 }
 
@@ -19,7 +18,6 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Frontend',
     icon: Palette,
-    color: 'bg-accent',
     skills: [
       { name: 'HTML', level: 90 },
       { name: 'CSS', level: 85 },
@@ -32,7 +30,6 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Backend',
     icon: ServerCog,
-    color: 'bg-stone-400',
     skills: [
       { name: 'Python', level: 85 },
       { name: 'Flask', level: 80 },
@@ -43,7 +40,6 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Database',
     icon: Database,
-    color: 'bg-stone-500',
     skills: [
       { name: 'PostgreSQL', level: 80 },
       { name: 'SQLite', level: 75 },
@@ -51,22 +47,20 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: 'Tools',
+    title: 'Tools & Workflow',
     icon: Wrench,
-    color: 'bg-stone-300',
     skills: [
       { name: 'Git', level: 85 },
       { name: 'GitHub', level: 85 },
       { name: 'Linux', level: 75 },
       { name: 'VS Code', level: 90 },
-      { name: 'Pycharm', level: 80 },
+      { name: 'PyCharm', level: 80 },
       { name: 'Postman', level: 80 },
     ],
   },
   {
     title: 'Cybersecurity',
     icon: ShieldCheck,
-    color: 'bg-accent',
     skills: [
       { name: 'Network Security', level: 70 },
       { name: 'Web Security', level: 75 },
@@ -75,22 +69,22 @@ const skillCategories: SkillCategory[] = [
   },
 ];
 
-function SkillBar({ skill, color, delay }: { skill: Skill; color: string; delay: number }) {
+function SkillBar({ skill, delay }: { skill: Skill; delay: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   return (
     <div ref={ref} className="space-y-1.5">
       <div className="flex justify-between text-sm">
-        <span className="text-stone-300">{skill.name}</span>
-        <span className="font-mono text-xs text-stone-500">{skill.level}%</span>
+        <span className="font-medium text-paper">{skill.name}</span>
+        <span className="font-mono text-xs text-muted">{skill.level}%</span>
       </div>
-      <div className="h-2 overflow-hidden rounded-full bg-line">
+      <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
         <motion.div
           initial={{ width: 0 }}
           animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
           transition={{ duration: 0.8, delay, ease: 'easeOut' }}
-          className={`h-full ${color}`}
+          className="h-full rounded-full bg-accent"
         />
       </div>
     </div>
@@ -99,35 +93,39 @@ function SkillBar({ skill, color, delay }: { skill: Skill; color: string; delay:
 
 export default function Skills() {
   return (
-    <SectionWrapper id="skills">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-          Technical <span className="gradient-text">Skills</span>
+    <SectionWrapper id="skills" className="border-t border-line">
+      <div className="mb-12 text-center">
+        <p className="eyebrow">Expertise</p>
+        <h2 className="section-title mx-auto text-center">
+          Technical <span className="text-accent">Skills</span>
         </h2>
-        <div className="w-16 h-1 bg-primary-accent mx-auto rounded-full" />
+        <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-stone-400">
+          Core technologies and tools I use to build modern, reliable, and secure web products.
+        </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {skillCategories.map((category, catIdx) => (
           <motion.div
             key={category.title}
             initial={{ y: 20 }}
             whileInView={{ y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: catIdx * 0.1 }}
-            className="rounded-2xl border border-line bg-card p-6 card-hover"
+            transition={{ delay: catIdx * 0.08 }}
+            className="rounded-2xl border border-line bg-card p-6 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-md"
           >
-            <div className="flex items-center gap-3 mb-5">
-              <category.icon className="h-5 w-5 text-accent" aria-hidden="true" />
-              <h3 className="text-lg font-semibold text-paper">{category.title}</h3>
+            <div className="mb-6 flex items-center gap-3">
+              <div className="grid h-9 w-9 place-items-center rounded-xl bg-blue-50 text-accent dark:bg-blue-950/50">
+                <category.icon className="h-5 w-5" aria-hidden="true" />
+              </div>
+              <h3 className="text-base font-bold text-paper">{category.title}</h3>
             </div>
             <div className="space-y-4">
               {category.skills.map((skill, skillIdx) => (
                 <SkillBar
                   key={skill.name}
                   skill={skill}
-                  color={category.color}
-                  delay={catIdx * 0.1 + skillIdx * 0.05}
+                  delay={catIdx * 0.08 + skillIdx * 0.04}
                 />
               ))}
             </div>
